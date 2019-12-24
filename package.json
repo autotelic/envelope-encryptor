@@ -1,0 +1,57 @@
+{
+  "name": "aszabasu",
+  "version": "0.0.0-development",
+  "description": "Envelope encryption using cloud key services",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "test": "tap --flow",
+    "flow": "flow",
+    "format": "prettier '**/*.js' --write",
+    "format:check": "prettier '**/*.js' --check",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "build": "rimraf ./dist && rollup --config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autotelic/aszabasu.git"
+  },
+  "keywords": [
+    "envelope",
+    "encryption",
+    "kms"
+  ],
+  "author": "Autotelic Development Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/autotelic/aszabasu/issues"
+  },
+  "homepage": "https://github.com/autotelic/aszabasu#readme",
+  "dependencies": {
+    "aws-sdk": "^2.589.0",
+    "lodash.snakecase": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0 || ^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-flowtype": "^4.5.2",
+    "eslint-plugin-import": "^2.18.2",
+    "flow-bin": "^0.113.0",
+    "husky": "^3.1.0",
+    "prettier": ">=1.8.0",
+    "prettier-eslint": "^9.0.1",
+    "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.27.11",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sinon": "^8.0.1",
+    "tap": "^14.10.5"
+  }
+}
