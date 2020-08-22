@@ -1,45 +1,11 @@
 // @flow
 
-import crypto from 'crypto';
-import KMS from 'aws-sdk/clients/kms';
+const crypto = require('crypto');
 
 type DecryptArgs = {
   ciphertext: string,
   key: string,
   salt: string,
-};
-
-export const awsKms = (keyId: string, config: Object = {}, Client = KMS) => {
-  const kms = new Client(config);
-
-  const getDataKey = async () => {
-    const { CiphertextBlob, Plaintext } = await kms
-      .generateDataKey({
-        KeyId: keyId,
-        KeySpec: 'AES_256',
-      })
-      .promise();
-
-    return {
-      encryptedKey: CiphertextBlob.toString('base64'),
-      plaintextKey: Plaintext,
-    };
-  };
-
-  const decryptDataKey = async key => {
-    const { Plaintext } = await kms
-      .decrypt({
-        CiphertextBlob: Buffer.from(key, 'base64'),
-      })
-      .promise();
-
-    return Plaintext;
-  };
-
-  return {
-    getDataKey,
-    decryptDataKey,
-  };
 };
 
 const createEnvelopeEncrypter = keyService => {
@@ -77,4 +43,4 @@ const createEnvelopeEncrypter = keyService => {
   };
 };
 
-export default createEnvelopeEncrypter;
+module.exports = createEnvelopeEncrypter;
