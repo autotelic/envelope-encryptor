@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "tap --flow"
+    "test": "tap --flow --100"
   },
   "repository": {
     "type": "git",
@@ -25,11 +25,19 @@
   },
   "homepage": "https://github.com/autotelic/envelope-encryptor#readme",
   "dependencies": {
-    "aws-sdk": "^2.738.0",
-    "lodash.snakecase": "^4.1.1"
+    "aws-sdk": "^2.738.0"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-flowtype": "^5.2.0",
     "sinon": "^9.0.3",
+    "standard": "^14.3.4",
     "tap": "^14.10.8"
   }
 }
