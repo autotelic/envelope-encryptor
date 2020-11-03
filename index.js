@@ -8,7 +8,7 @@ type DecryptArgs = {
   salt: string,
 };
 
-const createEnvelopeEncrypter = keyService => {
+const createEnvelopeEncryptor = keyService => {
   const algorithm = 'aes256'
 
   const { getDataKey, decryptDataKey } = keyService
@@ -43,4 +43,4 @@ const createEnvelopeEncrypter = keyService => {
   }
 }
 
-module.exports = createEnvelopeEncrypter
+module.exports = createEnvelopeEncryptor

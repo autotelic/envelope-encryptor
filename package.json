@@ -24,8 +24,8 @@
     "url": "https://github.com/autotelic/envelope-encryptor/issues"
   },
   "homepage": "https://github.com/autotelic/envelope-encryptor#readme",
-  "dependencies": {
-    "aws-sdk": "^2.738.0"
+  "optionalDependencies": {
+    "aws-sdk": "^2.782.0"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -36,8 +36,8 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint-plugin-flowtype": "^5.2.0",
-    "sinon": "^9.0.3",
-    "standard": "^14.3.4",
+    "sinon": "^9.2.1",
+    "standard": "^16.0.0",
     "tap": "^14.10.8"
   }
 }

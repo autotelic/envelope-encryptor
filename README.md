@@ -1,11 +1,21 @@
-# aszabasu
+# envelope-encryptor
+
+Envelope encryption with configurable KMS.
+
+## Installation
+
+```sh
+npm install @autotelic/envelope-encryptor
+```
+
+## Usage
+
+```js
+
+// Using AWS KMS
+
+const createEnvelopeEncryptor = require('@autotelic/envelope-encryptor')
+const { awsKms } = require('@autotelic/envelope-encryptor/kms')
+
 
 ```
-A U T O E
-L I C B D
-F G H K M
-N P Q R S
-V W X Y Z
-```
-
-## Envelope Encryption

@@ -1,6 +1,6 @@
 const t = require('tap')
 const crypto = require('crypto')
-const createEnvelopeEncrypter = require('.')
+const createEnvelopeEncryptor = require('.')
 
 const plaintextKey = crypto
   .createHash('sha256')
@@ -16,13 +16,13 @@ const keyService = {
   decryptDataKey: key => Promise.resolve(plaintextKey)
 }
 
-const encrypter = createEnvelopeEncrypter(keyService)
+const encryptor = createEnvelopeEncryptor(keyService)
 
 t.test('envelope encrypter', async t => {
-  const result = await encrypter.encrypt('secret message')
+  const result = await encryptor.encrypt('secret message')
   const { key } = result
   t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
-  const secretMessage = await encrypter.decrypt(result)
+  const secretMessage = await encryptor.decrypt(result)
   t.equal(
     secretMessage,
     'secret message',
