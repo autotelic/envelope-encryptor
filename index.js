@@ -8,7 +8,12 @@ type DecryptArgs = {
   salt: string,
 };
 
-const createEnvelopeEncryptor = keyService => {
+const defaults = {
+  encoding: 'hex'
+}
+
+const createEnvelopeEncryptor = (keyService, options = defaults) => {
+  const { encoding } = options
   const algorithm = 'aes256'
 
   const { getDataKey, decryptDataKey } = keyService
@@ -19,8 +24,9 @@ const createEnvelopeEncryptor = keyService => {
     const cipher = crypto.createCipheriv(algorithm, plaintextKey, salt)
     const ciphertext = [
       cipher.update(plaintext, 'utf8'),
-      cipher.final('hex')
+      cipher.final(encoding)
     ].join('')
+
     return {
       ciphertext,
       key: encryptedKey,
@@ -32,7 +38,7 @@ const createEnvelopeEncryptor = keyService => {
     const dataKey = await decryptDataKey(key)
     const decipher = crypto.createDecipheriv(algorithm, dataKey, salt)
     return [
-      decipher.update(ciphertext, 'hex', 'utf8'),
+      decipher.update(ciphertext, encoding, 'utf8'),
       decipher.final('utf8')
     ].join('')
   }

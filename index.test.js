@@ -16,9 +16,23 @@ const keyService = {
   decryptDataKey: key => Promise.resolve(plaintextKey)
 }
 
-const encryptor = createEnvelopeEncryptor(keyService)
+t.test('envelope encryptor', async t => {
+  const encryptor = createEnvelopeEncryptor(keyService)
 
-t.test('envelope encrypter', async t => {
+  const result = await encryptor.encrypt('secret message')
+  const { key } = result
+  t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
+  const secretMessage = await encryptor.decrypt(result)
+  t.equal(
+    secretMessage,
+    'secret message',
+    'given ciphertext, key and salt decrypt returns plaintext message'
+  )
+})
+
+t.test('envelope encryptor - supports changing ciphertext encoding format ', async t => {
+  const encryptor = createEnvelopeEncryptor(keyService, { encoding: 'base64' })
+
   const result = await encryptor.encrypt('secret message')
   const { key } = result
   t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
