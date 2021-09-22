@@ -1,12 +1,5 @@
-// @flow
 
 const crypto = require('crypto')
-
-type DecryptArgs = {
-  ciphertext: string,
-  key: string,
-  salt: string,
-};
 
 const defaults = {
   encoding: 'hex'
@@ -18,7 +11,7 @@ const createEnvelopeEncryptor = (keyService, options = defaults) => {
 
   const { getDataKey, decryptDataKey } = keyService
 
-  const encrypt = async (plaintext: string) => {
+  const encrypt = async (plaintext) => {
     const { encryptedKey, plaintextKey } = await getDataKey()
     const salt = Buffer.from(crypto.randomBytes(8)).toString('hex')
     const cipher = crypto.createCipheriv(algorithm, plaintextKey, salt)
@@ -34,7 +27,7 @@ const createEnvelopeEncryptor = (keyService, options = defaults) => {
     }
   }
 
-  const decrypt = async ({ ciphertext, key, salt }: DecryptArgs) => {
+  const decrypt = async ({ ciphertext, key, salt }) => {
     const dataKey = await decryptDataKey(key)
     const decipher = crypto.createDecipheriv(algorithm, dataKey, salt)
     return [
