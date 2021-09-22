@@ -1,13 +1,19 @@
 {
   "name": "envelope-encryptor",
-  "version": "0.0.1-development",
+  "version": "0.0.0",
   "description": "Envelope encryption with configurable KMS",
   "main": "index.js",
+  "files": [],
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "tap --flow --100"
+    "build": "flow-remove-types ./ -d /lib",
+    "fix": "npm run lint -- --fix",
+    "lint": "standard",
+    "prepublish": "npm run build",
+    "test": "tap --flow --100",
+    "validate": "npm run lint && npm run test"
   },
   "repository": {
     "type": "git",
@@ -36,6 +42,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint-plugin-flowtype": "^5.2.0",
+    "flow-remove-types": "^2.160.1",
     "sinon": "^9.2.1",
     "standard": "^16.0.0",
     "tap": "^14.10.8"
