@@ -1,13 +1,18 @@
 {
-  "name": "envelope-encryptor",
+  "name": "@autotelic/envelope-encryptor",
   "version": "0.0.1-development",
   "description": "Envelope encryption with configurable KMS",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "files": [
+    "index.js",
+    "kms.js",
+    "lib/awsKms.js"
+  ],
   "scripts": {
-    "test": "tap --flow --100"
+    "fix": "npm run lint -- --fix",
+    "lint": "standard",
+    "test": "tap --100",
+    "validate": "npm run lint && npm run test"
   },
   "repository": {
     "type": "git",
@@ -27,15 +32,7 @@
   "optionalDependencies": {
     "aws-sdk": "^2.782.0"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "flowtype"
-    ]
-  },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint-plugin-flowtype": "^5.2.0",
     "sinon": "^9.2.1",
     "standard": "^16.0.0",
     "tap": "^14.10.8"
