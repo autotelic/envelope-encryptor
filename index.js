@@ -16,7 +16,7 @@ const createEnvelopeEncryptor = (keyService, options = defaults) => {
     const salt = Buffer.from(crypto.randomBytes(8)).toString('hex')
     const cipher = crypto.createCipheriv(algorithm, plaintextKey, salt)
     const ciphertext = [
-      cipher.update(plaintext, 'utf8'),
+      cipher.update(plaintext, 'utf8', encoding),
       cipher.final(encoding)
     ].join('')
 

@@ -16,30 +16,38 @@ const keyService = {
   decryptDataKey: key => Promise.resolve(plaintextKey)
 }
 
-t.test('envelope encryptor', async t => {
-  const encryptor = createEnvelopeEncryptor(keyService)
+const tests = [
+  'smallSecret',
+  'mediumSecretLength',
+  'superSuperSuperSuperSuperSuperSuperSuperSuperSuperSuperLongStringWithLotsOfChararctersThatWillBeEncryptedAndDecryptedProperly'
+]
 
-  const result = await encryptor.encrypt('secret message')
-  const { key } = result
-  t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
-  const secretMessage = await encryptor.decrypt(result)
-  t.equal(
-    secretMessage,
-    'secret message',
-    'given ciphertext, key and salt decrypt returns plaintext message'
-  )
-})
+tests.forEach((plaintextInput) => {
+  t.test('envelope encryptor', async t => {
+    const encryptor = createEnvelopeEncryptor(keyService)
 
-t.test('envelope encryptor - supports changing ciphertext encoding format ', async t => {
-  const encryptor = createEnvelopeEncryptor(keyService, { encoding: 'base64' })
+    const result = await encryptor.encrypt(plaintextInput)
+    const { key } = result
+    t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
+    const secretMessage = await encryptor.decrypt(result)
+    t.equal(
+      secretMessage,
+      plaintextInput,
+      'given ciphertext, key and salt decrypt returns plaintext message'
+    )
+  })
 
-  const result = await encryptor.encrypt('secret message')
-  const { key } = result
-  t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
-  const secretMessage = await encryptor.decrypt(result)
-  t.equal(
-    secretMessage,
-    'secret message',
-    'given ciphertext, key and salt decrypt returns plaintext message'
-  )
+  t.test('envelope encryptor - supports changing ciphertext encoding format ', async t => {
+    const encryptor = createEnvelopeEncryptor(keyService, { encoding: 'base64' })
+
+    const result = await encryptor.encrypt(plaintextInput)
+    const { key } = result
+    t.equal(key, 'foo', 'encryptedKey is from keyService.getDataKey')
+    const secretMessage = await encryptor.decrypt(result)
+    t.equal(
+      secretMessage,
+      plaintextInput,
+      'given ciphertext, key and salt decrypt returns plaintext message'
+    )
+  })
 })
