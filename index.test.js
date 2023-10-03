@@ -1,6 +1,6 @@
-const t = require('tap')
-const crypto = require('crypto')
-const createEnvelopeEncryptor = require('.')
+import t from 'tap'
+import crypto from 'crypto'
+import { createEnvelopeEncryptor } from './index.js'
 
 const plaintextKey = crypto
   .createHash('sha256')

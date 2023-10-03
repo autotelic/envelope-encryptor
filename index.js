@@ -1,11 +1,11 @@
-
-const crypto = require('crypto')
+export { default as awsKms } from './lib/awsKms.js'
+import crypto from 'crypto'
 
 const defaults = {
   encoding: 'hex'
 }
 
-const createEnvelopeEncryptor = (keyService, options = defaults) => {
+export const createEnvelopeEncryptor = (keyService, options = defaults) => {
   const { encoding } = options
   const algorithm = 'aes256'
 
@@ -41,5 +41,3 @@ const createEnvelopeEncryptor = (keyService, options = defaults) => {
     encrypt
   }
 }
-
-module.exports = createEnvelopeEncryptor
