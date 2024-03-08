@@ -1,11 +1,12 @@
 {
   "name": "@autotelic/envelope-encryptor",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Envelope encryption with configurable KMS",
   "main": "index.js",
+  "types": "index.d.ts",
+  "type": "module",
   "files": [
     "index.js",
-    "kms.js",
     "lib/awsKms.js"
   ],
   "scripts": {
@@ -29,8 +30,8 @@
     "url": "https://github.com/autotelic/envelope-encryptor/issues"
   },
   "homepage": "https://github.com/autotelic/envelope-encryptor#readme",
-  "optionalDependencies": {
-    "aws-sdk": "^2.782.0"
+  "dependencies": {
+    "@aws-sdk/client-kms": "^3.423.0"
   },
   "devDependencies": {
     "sinon": "^13.0.0",
