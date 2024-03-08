@@ -1,5 +1,5 @@
-export { default as awsKms } from './lib/awsKms.js'
 import crypto from 'crypto'
+export { default as awsKms } from './lib/awsKms.js'
 
 const defaults = {
   encoding: 'hex'
