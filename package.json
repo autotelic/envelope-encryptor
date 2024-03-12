@@ -1,6 +1,6 @@
 {
   "name": "@autotelic/envelope-encryptor",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Envelope encryption with configurable KMS",
   "main": "index.js",
   "types": "index.d.ts",
