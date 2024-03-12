@@ -8,6 +8,7 @@
   "files": [
     "index.js",
     "lib/awsKms.js",
+    "lib/dummyKms.js",
     "index.d.ts"
   ],
   "scripts": {
@@ -31,12 +32,12 @@
     "url": "https://github.com/autotelic/envelope-encryptor/issues"
   },
   "homepage": "https://github.com/autotelic/envelope-encryptor#readme",
-  "dependencies": {
-    "@aws-sdk/client-kms": "^3.423.0"
-  },
   "devDependencies": {
     "sinon": "^13.0.0",
     "standard": "^16.0.0",
     "tap": "^15.0.10"
+  },
+  "dependencies": {
+    "@aws-sdk/client-kms": "^3.529.1"
   }
 }

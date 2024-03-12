@@ -48,3 +48,7 @@ const plaintext = await decrypt({
   salt
 })
 ```
+
+## In development and testing
+
+Don't need to use a real KMS, so export

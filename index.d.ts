@@ -50,7 +50,7 @@ declare module '@autotelic/envelope-encryptor' {
     decrypt: (data: EncryptedData) => Promise<string>;
   }
 
-  export function  createEnvelopeEncryptor(
+  export function createEnvelopeEncryptor(
     keyService: KeyService,
     options?: EncryptorOptions
   ): EnvelopeEncryptor;
