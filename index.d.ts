@@ -1,6 +1,6 @@
 declare module '@autotelic/envelope-encryptor' {
   import { createCipheriv } from 'node:crypto'
-  import { KMS, KMSClientResolvedConfig } from '@aws-sdk/client-kms'
+  import { KMS, KMSClientConfig } from '@aws-sdk/client-kms'
 
   export type CipherKey = Parameters<typeof createCipheriv>[1]
 
@@ -12,7 +12,7 @@ declare module '@autotelic/envelope-encryptor' {
     decryptDataKey: (key: string) => Promise<CipherKey>
   }
 
-  export interface AwsKmsConfig extends KMSClientResolvedConfig {}
+  export interface AwsKmsConfig extends KMSClientConfig {}
 
   export type AwsKmsClient = Pick<KMS, 'generateDataKey' | 'decrypt'>
 
@@ -23,6 +23,8 @@ declare module '@autotelic/envelope-encryptor' {
     config?: AwsKmsConfig,
     Client?: new (config?: AwsKmsConfig) => AwsKmsClient
   ): AwsKmsService
+
+  export function dummyKms (): KeyService
 
   export interface EncryptorOptions {
     encoding?: 'hex'
