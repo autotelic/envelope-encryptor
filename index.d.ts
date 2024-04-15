@@ -24,6 +24,8 @@ declare module '@autotelic/envelope-encryptor' {
     Client?: new (config?: AwsKmsConfig) => AwsKmsClient
   ): AwsKmsService
 
+  export function dummyKms (): KeyService
+
   export interface EncryptorOptions {
     encoding?: 'hex'
   }
