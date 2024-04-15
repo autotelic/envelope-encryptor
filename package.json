@@ -38,6 +38,6 @@
     "tap": "^15.0.10"
   },
   "dependencies": {
-    "@aws-sdk/client-kms": "^3.529.1"
+    "@aws-sdk/client-kms": "^3.555.0"
   }
 }
