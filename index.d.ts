@@ -26,6 +26,8 @@ declare module '@autotelic/envelope-encryptor' {
 
   export function dummyKms (): KeyService
 
+  export function kekService(base64kek: string): KeyService
+
   export interface EncryptorOptions {
     encoding?: 'hex'
   }

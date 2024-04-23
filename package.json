@@ -9,6 +9,7 @@
     "index.js",
     "lib/awsKms.js",
     "lib/dummyKms.js",
+    "lib/kekService.js",
     "index.d.ts"
   ],
   "scripts": {

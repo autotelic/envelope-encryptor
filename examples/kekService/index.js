@@ -3,6 +3,7 @@ import { createEnvelopeEncryptor, kekService } from '../../index.js'
 
 ;(async function () {
   const base64Kek = crypto.randomBytes(32).toString('base64')
+
   const kms = kekService(base64Kek)
   const { encrypt, decrypt } = createEnvelopeEncryptor(kms)
 
