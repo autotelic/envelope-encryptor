@@ -15,5 +15,4 @@ import { createEnvelopeEncryptor, kekService } from '../../index.js'
   const decrypted = await decrypt(encrypted)
 
   console.log(decrypted) // Hello, world!
-
 }())
