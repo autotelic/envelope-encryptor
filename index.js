@@ -1,6 +1,7 @@
 import crypto from 'crypto'
 export { default as awsKms } from './lib/awsKms.js'
 export { default as dummyKms } from './lib/dummyKms.js'
+export { default as kekService } from './lib/kekService.js'
 
 const defaults = {
   encoding: 'hex'
