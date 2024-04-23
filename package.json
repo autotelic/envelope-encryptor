@@ -9,6 +9,7 @@
     "index.js",
     "lib/awsKms.js",
     "lib/dummyKms.js",
+    "lib/gcpKms.js",
     "index.d.ts"
   ],
   "scripts": {
@@ -37,7 +38,8 @@
     "standard": "^16.0.0",
     "tap": "^15.0.10"
   },
-  "dependencies": {
-    "@aws-sdk/client-kms": "^3.529.1"
+  "optionalDependencies": {
+    "@aws-sdk/client-kms": "^3.529.1",
+    "@google-cloud/kms": "^4.1.0"
   }
 }

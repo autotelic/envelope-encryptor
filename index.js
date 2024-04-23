@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 export { default as awsKms } from './lib/awsKms.js'
+export { default as gcpKms } from './lib/gcpKms.js'
 export { default as dummyKms } from './lib/dummyKms.js'
 
 const defaults = {
