@@ -60,7 +60,8 @@ you can generate a suitable one like this:
 import { createEnvelopeEncryptor, kekService } from '@autotelic/envelope-encryptor'
 
 const keyService = kekService(process.env.KEY_ENCRYPTION_KEY)
-const { encrypt, decrypt } = createEnvelopeEncryptor(kms)
+
+const { encrypt, decrypt } = createEnvelopeEncryptor(keyService)
 
 const {
   ciphertext,
@@ -86,7 +87,8 @@ This should definitely not be used in production!
 import { createEnvelopeEncryptor, dummyKms } from '@autotelic/envelope-encryptor'
 
 const keyService = dummyKms()
-const { encrypt, decrypt } = createEnvelopeEncryptor(kms)
+
+const { encrypt, decrypt } = createEnvelopeEncryptor(keyService)
 
 const {
   ciphertext,
