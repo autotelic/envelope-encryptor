@@ -1,6 +1,6 @@
 # envelope-encryptor
 
-Envelope encryption with configurable KMS.
+[Envelope encryption](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#enveloping) with configurable KEK (Key Encryption Key) provider.
 
 ## Installation
 
@@ -10,9 +10,11 @@ npm install @autotelic/envelope-encryptor
 
 ## Usage
 
-```js
+### AWS KMS
 
-// Using AWS KMS
+Using [AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
+
+```js
 import { createEnvelopeEncryptor, awsKms } from '@autotelic/envelope-encryptor'
 
 const {
@@ -34,14 +36,38 @@ const encryptor = createEnvelopeEncryptor(keyService)
 
 const { encrypt, decrypt } = encryptor
 
-// encrypt; store these in the db; plaintext is encrypted at rest
 const {
   ciphertext,
   key,
   salt
  } = await encrypt('plaintext')
 
-// decrypt
+const plaintext = await decrypt({
+  ciphertext: ciphertext.toString(),
+  key,
+  salt
+})
+```
+
+### KEK from an env variable
+
+If your KEK will be e.g. stored in a secrets manager you can pass
+it as a base64 encoded string. The key length must be 32 bytes,
+you can generate a suitable one like this:
+`crypto.randomBytes(32).toString('base64')`
+
+```js
+import { createEnvelopeEncryptor, kekService } from '@autotelic/envelope-encryptor'
+
+const keyService = kekService(process.env.KEY_ENCRYPTION_KEY)
+const { encrypt, decrypt } = createEnvelopeEncryptor(kms)
+
+const {
+  ciphertext,
+  key,
+  salt
+} = await encrypt('plaintext')
+
 const plaintext = await decrypt({
   ciphertext: ciphertext.toString(),
   key,
@@ -51,4 +77,46 @@ const plaintext = await decrypt({
 
 ## In development and testing
 
-Don't need to use a real KMS, so export
+If you don't really need to use a secure KEK, e.g. in development or for testing,
+but you do need to generate DEKs (Data Encryption Key) to work with, there is
+a dummy KMS service.
+This should definitely not be used in production!
+
+```js
+import { createEnvelopeEncryptor, dummyKms } from '@autotelic/envelope-encryptor'
+
+const keyService = dummyKms()
+const { encrypt, decrypt } = createEnvelopeEncryptor(kms)
+
+const {
+  ciphertext,
+  key,
+  salt
+} = await encrypt('plaintext')
+
+const plaintext = await decrypt({
+  ciphertext: ciphertext.toString(),
+  key,
+  salt
+})
+```
+
+## Custom Key Service
+
+You can implement a custom key service to pass to
+`createEnvelopeEncryptor`. It should be an object that
+provides two async functions, `getDataKey` and `decryptDataKey`.
+
+`getDataKey` accepts no arguments and should return a
+an object containing the encrypted data encryption key (which has been encrypted by the KEK),
+and the plaintext data encryption key.
+
+`decryptDataKey` accepts an encrypted data key and should
+return the plaintext data encryption key.
+
+See the key service implementations in this module for examples.
+
+
+
+
+
