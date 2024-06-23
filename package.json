@@ -22,7 +22,7 @@
     "lint": "standard",
     "test": "tap --100",
     "build:cjs": "rollup index.js --file index.cjs --format cjs",
-    "prepare": "npm run build:cjs",
+    "prepublish": "npm run build:cjs",
     "validate": "npm run lint && npm run test"
   },
   "repository": {
