@@ -78,9 +78,9 @@ const plaintext = await decrypt({
 
 ## In development and testing
 
-If you don't really need to use a secure KEK, e.g. in development or for testing,
+If you don't really need to use an actual KEK, e.g. in development or for testing,
 but you do need to generate DEKs (Data Encryption Key) to work with, there is
-a dummy KMS service.
+a dummy KMS service. The "encrypted" key is just a base64 representation of a random buffer.
 This should definitely not be used in production!
 
 ```js

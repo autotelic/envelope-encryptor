@@ -5,8 +5,13 @@
   "main": "index.js",
   "types": "index.d.ts",
   "type": "module",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs"
+  },
   "files": [
     "index.js",
+    "index.cjs",
     "lib/awsKms.js",
     "lib/dummyKms.js",
     "lib/kekService.js",
@@ -16,6 +21,8 @@
     "fix": "npm run lint -- --fix",
     "lint": "standard",
     "test": "tap --100",
+    "build:cjs": "rollup index.js --file index.cjs --format cjs",
+    "prepublishOnly": "npm run build:cjs",
     "validate": "npm run lint && npm run test"
   },
   "repository": {
@@ -34,6 +41,7 @@
   },
   "homepage": "https://github.com/autotelic/envelope-encryptor#readme",
   "devDependencies": {
+    "rollup": "^4.18.0",
     "sinon": "^13.0.0",
     "standard": "^16.0.0",
     "tap": "^15.0.10"
